@@ -8,13 +8,15 @@ int    load(t_game *game, char *path)
     int error;
     COLOR color;
 
+    game->text = malloc(sizeof(t_text) * 5);
+    game->map.map = malloc(sizeof(char*) * 1);
+    game->map.row = 0;
     n = 0;
     error = 0;
     fd = open(path, O_RDONLY);
     while ((n = gnl(fd, &line)) >= 0)
     {
-        while (*line == ' ')
-            line++;
+        skip(&line, ' ');
         if (*line == 'R')
         {
             error = load_resolution(game, line);
@@ -57,33 +59,60 @@ int    load(t_game *game, char *path)
         }
         else if (*line == 'E' && *(line + 1) == 'A')
         {
-             error = load_text_ea(game, line);
+            error = load_text_ea(game, line);
             if (error)
                 return -1;
         }
-        // else if (*line == 'S')
-        //     load_sprit(game, line);
-        if (n<= 0)
+        else if (*line == 'S')
+        {
+            error = load_sprit(game, line);
+            if (error)
+                return -1;
+        }
+        if (!n || find_map(line))
+            break;
+        free(line);
+    }
+    load_map(game, line);
+    while ((n = gnl(fd, &line)) >= 0)
+    {
+        load_map(game, line);
+        free(line);
+        if (!n)
             break;
     }
-    // load_map(game);
     if (error > 0)
         return -1;
     return 0;
 
 }
-
-// int    load_map(t_game *game)
-// {
-
-// }
+int     find_map(char *line)
+{
+    int i;
+    
+    i = 0;
+    while(line[i] != '\0')
+    {
+        while (line[i] == ' ')
+            i++;
+        if (line[i] == '1')
+            return 1;
+    }
+    return 0;
+}
+int    load_map(t_game *game, char *line)
+{
+    game->map.map = ft_realalloc(game->map.map, game->map.row, game->map.row + 1);
+    game->map.map[game->map.row] = line;
+    game->map.row++;
+    return 0;
+}
 
 int    load_text_no(t_game *game, char *line)
 {
     line++;
     line++;
-    while (*line == ' ')
-        line++;
+    skip(&line, ' ');
     if (*line == '\0')
         return 1;
     game->text[T_N].path = ft_strdup(line);
@@ -94,8 +123,7 @@ int    load_text_so(t_game *game, char *line)
 {
     line++;
     line++;
-    while (*line == ' ')
-        line++;
+    skip(&line, ' ');
     if (*line == '\0')
         return 1;
     game->text[T_S].path = ft_strdup(line);
@@ -106,8 +134,7 @@ int    load_text_we(t_game *game, char *line)
 {
     line++;
     line++;
-    while (*line == ' ')
-        line++;
+    skip(&line, ' ');
     if (*line == '\0')
         return 1;
     game->text[T_W].path = ft_strdup(line);
@@ -118,8 +145,7 @@ int    load_text_ea(t_game *game, char *line)
 {
     line++;
     line++;
-    while (*line == ' ')
-        line++;
+    skip(&line, ' ');
     if (*line == '\0')
         return 1;
     game->text[T_E].path = ft_strdup(line);
@@ -129,18 +155,16 @@ int    load_text_ea(t_game *game, char *line)
 int    load_resolution(t_game *game, char *line)
 {
     line++;
-    while (*line == ' ')
-            line++;
+    skip(&line, ' ');
     if (ft_isdigit(*line))
-        game->setting.r.x = ft_atoi(line);
+        game->res.x = ft_atoi(line);
     else
         return 1;
     while (ft_isdigit(*line))
         line++;
-    while (*line == ' ')
-        line++;
+    skip(&line, ' ');
     if (ft_isdigit(*line))
-        game->setting.r.y = ft_atoi(line);
+        game->res.y = ft_atoi(line);
     else
         return 1;
     while(ft_isdigit(*line) || *line == ' ')
@@ -186,10 +210,16 @@ int    load_cf_color(char *line)
     return rgbtoint(r,g,b);
 }
 
-// int    load_sprit(t_game *game, char *line)
-// {
-
-// }
+int    load_sprit(t_game *game, char *line)
+{
+    line++;
+    line++;
+    skip(&line, ' ');
+    if (*line == '\0')
+        return 1;
+    game->text[S].path = ft_strdup(line);
+    return 0;
+}
 
 int     ft_chek_inrang(int n, int min, int max)
 {
@@ -201,4 +231,10 @@ int     ft_chek_inrang(int n, int min, int max)
 int		rgbtoint(int r, int g, int b)
 {
 	return ((r * pow(256, 2)) + (g * 256) + b);
+}
+
+void    skip(char **line, char c)
+{
+     while (**line == c)
+        (*line)++;
 }

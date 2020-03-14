@@ -7,6 +7,12 @@
 #define WIDTH_WIN 1920
 #define HEIGHT_WIN 1080
 
+typedef struct s_map
+{
+    char    **map;
+    int     row;
+}   t_map;
+
 typedef struct  s_data {
     void        *img;
     char        *addr;

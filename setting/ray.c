@@ -8,12 +8,12 @@ void    cast_all_rays(t_game *game)
 
     i = 0;
     ray_angle = game->player.rotation_angle - (FOV / 2);
-    while (i < game->setting.r.x)
+    while (i < game->res.x)
     {
         cast_ray(game, i);
         game->rays[i].angle = ray_angle;
         copy_pos(&(game->rays[i].pos), game->player.pos);
-        ray_angle += FOV / game->setting.r.x;
+        ray_angle += FOV / game->res.x;
         i++;
     }
 }
@@ -23,16 +23,17 @@ void    render_rays(t_game *game)
     int i;
     t_line ray;
 
-    ray.color = 0x00FF0000;
+    ray.color = 0xFF0000;
     i = 0;
-    while (i < game->setting.r.x)
+    while (i < game->res.x)
     {
         copy_pos(&(ray.pos), game->rays[i].pos);
         ray.pos.x *= SCALE;
         ray.pos.y *= SCALE;
         ray.d = game->rays[i].distance * SCALE;
         ray.alpha = game->rays[i].angle;
-        draw_line(game, ray);
+        if (ray.pos.x <= game->res.x && ray.pos.y <= game->res.y)
+            draw_line(game, ray);
         i++;
     }
 }
@@ -79,7 +80,7 @@ void cast_ray(t_game *game, int id)
     next_horz.x = xintercept;
     next_horz.y = yintercept;
     
-    while ((next_horz.x > 0 && next_horz.x < game->setting.r.x) && (next_horz.y > 0 && next_horz.y < game->setting.r.y))
+    while ((next_horz.x > 0 && next_horz.x < game->res.x) && (next_horz.y > 0 && next_horz.y < game->res.y))
     {
         if (hit_wall(game, next_horz))
         {
@@ -122,7 +123,7 @@ void cast_ray(t_game *game, int id)
     next_vert.x = xintercept;
     next_vert.y = yintercept;
     
-    while ((next_vert.x > 0 && next_vert.x < game->setting.r.x) && (next_vert.y > 0 && next_vert.y < game->setting.r.y))
+    while ((next_vert.x > 0 && next_vert.x < game->res.x) && (next_vert.y > 0 && next_vert.y < game->res.y))
     {
         if (hit_wall(game, next_vert))
         {

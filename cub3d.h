@@ -39,10 +39,12 @@ void    render_rays(t_game *game);
 float   normalize_angle(float angle);
 float   distance(float x1, float y1, float x2, float y2);
 void    wall(t_game *game);
+int     ft_check(t_map map, int r, int c);
+int     map_check(t_map map);
 
 void    set_text(t_game *game);
 int  get_text_color(t_text text, int x, int y);
-void load_texture(t_game *game);
+int load_texture(t_game *game);
 int     get_texture(t_game *game, int i);
 int    load(t_game *game, char *path);
 
@@ -52,6 +54,11 @@ int    load_text_no(t_game *game, char *line);
 int    load_text_so(t_game *game, char *line);
 int    load_text_we(t_game *game, char *line);
 int    load_text_ea(t_game *game, char *line);
+int    load_sprit(t_game *game, char *line);
 int     ft_chek_inrang(int n, int min, int max);
 int		rgbtoint(int r, int g, int b);
+void    skip(char **line, char c);
+int     find_map(char *line);
+int    load_map(t_game *game, char *line);
+int     ft_is_player(char p);
 #endif

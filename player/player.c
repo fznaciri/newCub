@@ -31,5 +31,5 @@ void    move_player(t_game *game)
     pos.y = game->player.pos.y + sin(game->player.rotation_angle) * step;
 
     if (!hit_wall(game, pos))
-        set_pos(&(game->player.pos), game->player.pos.x + cos(game->player.rotation_angle) * step, game->player.pos.y + sin(game->player.rotation_angle) * step);
+        set_pos(&(game->player.pos), pos.x , pos.y);
 }

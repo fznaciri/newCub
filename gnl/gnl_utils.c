@@ -1,21 +1,21 @@
 #include "gnl.h"
 
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*str;
+// char	*ft_strdup(const char *s1)
+// {
+// 	int		i;
+// 	char	*str;
 
-	i = 0;
-	if (!(str = (char*)malloc((ft_strlen(s1) * sizeof(char)) + 1)))
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = s1[i];
-	return (str);
-}
+// 	i = 0;
+// 	if (!(str = (char*)malloc((ft_strlen(s1) * sizeof(char)) + 1)))
+// 		return (NULL);
+// 	while (s1[i] != '\0')
+// 	{
+// 		str[i] = s1[i];
+// 		i++;
+// 	}
+// 	str[i] = s1[i];
+// 	return (str);
+// }
 
 char	*ft_strndup(const char *s1, size_t n)
 {
@@ -34,15 +34,15 @@ char	*ft_strndup(const char *s1, size_t n)
 	return (str);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	int i;
+// size_t	ft_strlen(const char *s)
+// {
+// 	int i;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 		i++;
+// 	return (i);
+// }
 
 char	*ft_strchr(const char *s, int c)
 {

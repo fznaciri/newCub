@@ -5,6 +5,7 @@
 # define T_S 1
 # define T_W 2
 # define T_E 3
+# define S 4
 // typedef struct  s_texture
 // {
 //     COLOR   **north;
