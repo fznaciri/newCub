@@ -5,12 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 #include <fcntl.h>
 
 #define N_NO  0
 #define N_WE  1
 #define N_EA  2
 #define N_SO  3
+
+#define A_NO  0
+#define A_WE  1
+#define N_EA  2
+#define N_SO  3
+
+# define TILE_SIZE 64
 
 #define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
 #define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
@@ -145,10 +153,11 @@ void treat_r(char *s);
 void check_before_map();
 void treat_m(char *element);
 int empty_line(char *line);
-void fill_spaces(char *str, int n);
+void fill_spaces(char *str, int s, int e);
 void adjust_map();
 void verify_map();
 void verify_player();
+void get_player();
 
 // Utils
 size_t	ft_strlen(const char *s);

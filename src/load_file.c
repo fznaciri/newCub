@@ -6,14 +6,6 @@ void tozero_tkn()
 	g_tkn = (t_tkn){.f = 0, .c = 0, .r = 0};
 }
 
-// void treat_line(char *line)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	treat_element(line + i);
-// }
-
 void treat_element(char *element)
 {
 	int i;
@@ -105,8 +97,7 @@ void treat_f(char *s)
 		write_exit("Error\nNo value assigned to F element");
 	color.r = ft_atoi(s);
 	skip_digit(&s);
-	while (*s == ' ' || *s == '\t')
-		s++;
+	skip_spaces(&s);
 	s++;
 	color.g = ft_atoi(s);
 	skip_digit(&s);
@@ -211,12 +202,12 @@ int empty_line(char *line)
 	return (1);
 }
 
-void fill_spaces(char *str, int n)
+void fill_spaces(char *str, int s, int e)
 {
 	int i;
 
-	i = 0;
-	while (i < n)
+	i = s;
+	while (i < e)
 	{
 		str[i] = ' ';
 		i++;
@@ -236,13 +227,8 @@ void adjust_map()
 	while (i < g_game.map.h)
 	{
 		new[i] = malloc(g_game.map.w + 1);
-		fill_spaces(new[i], g_game.map.w);
-		i++;
-	}
-	i = 0;
-	while (i < g_game.map.h)
-	{
 		ft_memcpy(new[i], g_game.map.map[i], ft_strlen(g_game.map.map[i]));
+		fill_spaces(new[i], ft_strlen(g_game.map.map[i]), g_game.map.w);
 		i++;
 	}
 	i = 0;
@@ -321,6 +307,40 @@ void verify_player()
 		write_exit("Error\nMore than one player detected in map");
 }
 
+void get_player()
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < g_game.map.h)
+	{
+		while (j < g_game.map.w)
+		{
+			if (IS_MAP_ELEMENT(g_game.map.map[i][j]) || g_game.map.map[i][j] == ' ')
+			{
+				if (IS_P(g_game.map.map[i][j]))
+				{
+					g_player.pos.x = j * TILE_SIZE;
+					g_player.pos.y = i * TILE_SIZE;
+					if (g_game.map.map[i][j] == 'N')
+						g_player.rotation_angle = 3 * M_PI / 2;
+					if (g_game.map.map[i][j] == 'S')
+						g_player.rotation_angle = M_PI / 2;
+					if (g_game.map.map[i][j] == 'W')
+						g_player.rotation_angle = M_PI;
+					if (g_game.map.map[i][j] == 'E')
+						g_player.rotation_angle = 0;
+				}
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+}
+
 void load_file(char *path)
 {
 	int fd;
@@ -345,4 +365,5 @@ void load_file(char *path)
 	adjust_map();
 	verify_map();
 	verify_player();
+	get_player();
 }
