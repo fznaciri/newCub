@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <fcntl.h>
+#include "mlx.h"
 
 #define N_NO  0
 #define N_WE  1
@@ -19,11 +20,28 @@
 #define N_SO  3
 
 # define TILE_SIZE 64
+# define MAX_INT 2147483647
+# define FOV (60 * (M_PI / 180))
+
+#define SPEED 8
+#define ROT_SPEED 8 * (M_PI / 180)
+
+#define FALSE 0
+#define TRUE 1
+
+# define EVENT_EXIT 17
 
 #define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
 #define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
 #define IS_P(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E')
 
+typedef struct  s_img {
+    void        *img;
+    char        *addr;
+    int         bpp;
+    int         length;
+    int         e;
+}               t_img;
 
 typedef struct	s_tkn
 {
@@ -53,12 +71,12 @@ typedef struct s_pos
 }   t_pos;
 
 
-typedef struct s_map
+typedef struct  s_map
 {
     char **map;
 	int w;
 	int h;
-}   t_map;
+}               t_map;
 
 typedef struct	s_sp
 {
@@ -68,34 +86,35 @@ typedef struct	s_sp
 	float		distance;
 }				t_sp;
 
+typedef struct  s_inter
+{
+    t_pos   next;
+    int     hit;
+    t_pos   wall;
+    float   dist;
+}               t_inter;
+
 typedef struct  s_ray
 {
-    t_pos   pos;
     float   angle;
-    float   wall_hitx;
-    float   wall_hity;
-    float   distance;
-    int     wall_hitcontent;
-    int     vertical_hit;
-    int     facing_down;
-    int     facing_up;
-    int     facing_right;
-    int     facing_left;
-}   t_ray;
+    t_pos   wall_hit;
+    float   dist;
+    int     vert_hit;
+    int     ray_d;
+    int     ray_up;
+    int     ray_r;
+    int     ray_l;
+}               t_ray;
 
 
 typedef struct s_tex
 {
-    void    *ptr;
-    int		*addr;
+    t_img   tex;
     char    *path;
     int     w;
     int     h;
     //float   offset_x;
     //float   offset_y;
-	int		bpp;
-	int		line_length;
-	int		endian;
 }       t_tex;
 
 typedef struct s_player 
@@ -113,13 +132,10 @@ typedef struct s_game
     // Minilibx
     void    *m_ptr;
     void    *w_ptr;
-    char    *title;
     // Map properties
 	t_map   map;
 	//	Textures
 	t_tex   tex[4];
-    // Rays
-    t_ray   *ray;
     // Sprites
     char    *s_path;
     t_sp    sp[100];
@@ -132,9 +148,14 @@ typedef struct s_game
 	int ceeling;
 }   t_game;
 
+
+
+t_img       g_img;
 t_player    g_player;
 t_game      g_game;
 t_tkn       g_tkn;
+t_ray       *g_ray;
+
 
 // Load file
 void load_file(char *path);
@@ -159,6 +180,21 @@ void verify_map();
 void verify_player();
 void get_player();
 
+
+void    initialize_window();
+int     destroy_window();
+void    setup();
+void    process_input();
+int     main_loop();
+void    init_inter(t_inter *inter);
+void    hor_inter(t_inter *horz, int i);
+void    ver_inter(t_inter *vert, int i);
+void    ray_fill(t_inter *horz, t_inter *vert);
+void    cast_ray(float angle, int i);
+void    cast_allrays();
+
+
+
 // Utils
 size_t	ft_strlen(const char *s);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -171,6 +207,9 @@ int     bigger(int a, int b);
 void    skip_spaces(char **s);
 int     spaces(char *s);
 void	skip_digit(char **s);
+int     is_wall_at(t_pos pos);
+float normalize_angle(float angle);
+float distance(float x1, float y1, float x2, float y2);
 
 
 int		gnl(int fd, char **line);

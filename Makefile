@@ -1,7 +1,7 @@
   
-C = gcc
+C = gcc -I /usr/local/include
 MLX = -L mlx_lib -lmlx 
-DEP = -framework OpenGL -framework AppKit
+DEP = -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 FLAGS = -Wall -Wextra -Werror
 NAME = cub3d
 D = -g
@@ -10,13 +10,13 @@ SRC = ./src/*.c main.c
 all: $(NAME)
 
 $(NAME):
-	$(C) $(FLAGS) -o $(NAME) $(SRC) $(MLX) $(DEP)
+	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
 debug:
-	$(C) $(FLAGS) -o $(NAME) $(SRC) $(MLX) $(DEP) $(D) -fsanitize=address
-	#lldb $(NAME)
+	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP) $(D) -fsanitize=address
+	#@lldb $(NAME)
 run:
-	./$(NAME)
+	@./$(NAME)
 
 clean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: clean all

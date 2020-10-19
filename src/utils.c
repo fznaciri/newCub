@@ -143,3 +143,29 @@ void	skip_digit(char **s)
 	while (ft_isdigit(**s))
 		(*s)++;
 }
+
+
+int     is_wall_at(t_pos pos)
+{   
+	int index_x;
+    int index_y;
+
+    if (pos.x < 0 || pos.x > g_game.win_w || pos.y < 0 || pos.y > g_game.win_h)
+        return TRUE;
+    index_x = floor(pos.x / TILE_SIZE);
+    index_y = floor(pos.y / TILE_SIZE);
+    return (g_game.map.map[index_y][index_x] == 1 ? 1 : 0);
+}
+
+float normalize_angle(float angle)
+{
+    angle = remainderf(angle, 2 * M_PI);
+    if (angle < 0)
+         angle += 2 * M_PI; 
+    return (angle);
+}
+
+float distance(float x1, float y1, float x2, float y2)
+{
+    return (hypotf((x2 - x1), (y2 - y1)));
+}
