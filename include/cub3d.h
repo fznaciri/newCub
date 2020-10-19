@@ -189,7 +189,7 @@ int     main_loop();
 void    init_inter(t_inter *inter);
 void    hor_inter(t_inter *horz, int i);
 void    ver_inter(t_inter *vert, int i);
-void    ray_fill(t_inter *horz, t_inter *vert);
+void    ray_fill(t_inter *horz, t_inter *vert, int i);
 void    cast_ray(float angle, int i);
 void    cast_allrays();
 

@@ -72,24 +72,22 @@ void    ver_inter(t_inter *vert, int i)
     vert ->dist = vert ->hit ? distance(g_player.pos.x, g_player.pos.y, vert ->wall.x, vert ->wall.y) : MAX_INT;
 }
 
-void ray_fill(t_inter *horz, t_inter *vert)
+void ray_fill(t_inter *horz, t_inter *vert, int i)
 {
-    // if (vert_distance < horz_distance)
-    // {
-    //     g_rays[id].distance = vert_distance;
-    //     g_rays[id].wall_hitx = vert_wall_hitx;
-    //     g_rays[id].wall_hity = vert_wall_hity;
-    //     g_rays[id].wall_hitcontent = vert_wall_content;
-    //     g_rays[id].vertical_hit = TRUE;
-    // }
-    // else
-    // {
-    //     g_rays[id].distance = horz_distance;
-    //     g_rays[id].wall_hitx = horz_wall_hitx;
-    //     g_rays[id].wall_hity = horz_wall_hity;
-    //     g_rays[id].wall_hitcontent = horz_wall_content;
-    //     g_rays[id].vertical_hit = FALSE;
-    // }
+    if (vert->dist < horz ->dist)
+    {
+        g_ray[i].dist = vert ->dist;
+        g_ray[i].wall_hit.x = vert ->wall.x;
+        g_ray[i].wall_hit.y = vert ->wall.yy;
+        g_ray[i].vert_hit = TRUE;
+    }
+    else
+    {
+        g_ray[i].dist = horz ->dist;
+        g_ray[i].wall_hit.x = horz ->wall.x;
+        g_ray[i].wall_hit.y = horz ->wall.y;
+        g_ray[i].vert_hit = FALSE;
+    }
 }
 
 void cast_ray(float angle, int i)
@@ -107,7 +105,7 @@ void cast_ray(float angle, int i)
     init_inter(&vert);
     hor_inter(&horz, i);
     ver_inter(&vert, i);
-    ray_fill(&horz, &vert);
+    ray_fill(&horz, &vert, i);
 }
 
 void cast_allrays()
