@@ -78,7 +78,7 @@ void ray_fill(t_inter *horz, t_inter *vert, int i)
     {
         g_ray[i].dist = vert ->dist;
         g_ray[i].wall_hit.x = vert ->wall.x;
-        g_ray[i].wall_hit.y = vert ->wall.yy;
+        g_ray[i].wall_hit.y = vert ->wall.y;
         g_ray[i].vert_hit = TRUE;
     }
     else
@@ -111,7 +111,7 @@ void cast_ray(float angle, int i)
 void cast_allrays()
 {
     int id = 0;
-    float ray_angle = g_player.rotation_angle - (FOV / 2);
+    float ray_angle = g_player.rot_angle - (FOV / 2);
     while (id < g_game.win_w)
     {
         cast_ray(ray_angle, id);

@@ -154,7 +154,7 @@ int     is_wall_at(t_pos pos)
         return TRUE;
     index_x = floor(pos.x / TILE_SIZE);
     index_y = floor(pos.y / TILE_SIZE);
-    return (g_game.map.map[index_y][index_x] == 1 ? 1 : 0);
+    return (g_game.map.map[index_y][index_x] != '0' ? 1 : 0);
 }
 
 float normalize_angle(float angle)

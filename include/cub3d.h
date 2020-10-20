@@ -22,14 +22,18 @@
 # define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define FOV (60 * (M_PI / 180))
+# define MINI_MAP_SCALE 0.2
 
 #define SPEED 8
 #define ROT_SPEED 8 * (M_PI / 180)
+# define WALL_WIDTH 1
 
 #define FALSE 0
 #define TRUE 1
 
 # define EVENT_EXIT 17
+# define EVENT_KEYDOWN 2
+# define EVENT_KEYUP 3
 
 #define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
 #define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
@@ -119,13 +123,27 @@ typedef struct s_tex
 
 typedef struct s_player 
 {
-    t_pos pos;
-    float rotation_angle;
-    float move_speed;
-    float angle_speed;
-    int turn_direction;
-    int walk_direction;
+    t_pos   pos;
+    float   rot_angle;
+    int     turn_dir;
+    int     walk_dir;
 }   t_player;
+
+typedef struct s_rec
+{
+    t_pos pos;
+    t_pos size;
+    int   color;
+
+}              t_rec;
+
+typedef struct s_line
+{
+    t_pos pos;
+    float alpha;
+    int   dist;
+    int   color;
+}               t_line;
 
 typedef struct s_game
 {
@@ -181,17 +199,28 @@ void verify_player();
 void get_player();
 
 
-void    initialize_window();
-int     destroy_window();
-void    setup();
-void    process_input();
-int     main_loop();
+void    initialize_window(void);
+int     destroy_window(void);
+void    setup(void);
+void    process_input(void);
+int     main_loop(void);
 void    init_inter(t_inter *inter);
 void    hor_inter(t_inter *horz, int i);
 void    ver_inter(t_inter *vert, int i);
 void    ray_fill(t_inter *horz, t_inter *vert, int i);
 void    cast_ray(float angle, int i);
-void    cast_allrays();
+void    cast_allrays(void);
+void    my_mlx_pixel_put(int x, int y, int color);
+void    rect(t_rec rec);
+void    line(t_line l);
+int     key_down(int key);
+int     key_up(int key);
+void    move_player(void);
+void    render_player(void);
+void    render_map(void);
+void    render_rays();
+void    clear_image(void);
+
 
 
 
