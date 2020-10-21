@@ -325,9 +325,9 @@ void get_player()
 					g_player.pos.x = j * TILE_SIZE;
 					g_player.pos.y = i * TILE_SIZE;
 					if (g_game.map.map[i][j] == 'N')
-						g_player.rot_angle = 3 * M_PI / 2;
-					if (g_game.map.map[i][j] == 'S')
 						g_player.rot_angle = M_PI / 2;
+					if (g_game.map.map[i][j] == 'S')
+						g_player.rot_angle = 3 * M_PI / 2;
 					if (g_game.map.map[i][j] == 'W')
 						g_player.rot_angle = M_PI;
 					if (g_game.map.map[i][j] == 'E')

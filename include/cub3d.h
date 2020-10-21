@@ -173,6 +173,8 @@ t_player    g_player;
 t_game      g_game;
 t_tkn       g_tkn;
 t_ray       *g_ray;
+t_inter     g_horz;
+t_inter     g_vert;
 
 
 // Load file
@@ -204,11 +206,13 @@ int     destroy_window(void);
 void    setup(void);
 void    process_input(void);
 int     main_loop(void);
-void    init_inter(t_inter *inter);
-void    hor_inter(t_inter *horz, int i);
-void    ver_inter(t_inter *vert, int i);
-void    ray_fill(t_inter *horz, t_inter *vert, int i);
-void    cast_ray(float angle, int i);
+void    init_inter(t_inter inter);
+// void    hor_inter(t_inter *horz, int i);
+// void    ver_inter(t_inter *vert, int i);
+void    cast_vert(int id);
+void    cast_horz(int id);
+// void    ray_fill(t_inter *horz, t_inter *vert, int i);
+void    cast_ray(int i);
 void    cast_allrays(void);
 void    my_mlx_pixel_put(int x, int y, int color);
 void    rect(t_rec rec);
@@ -218,7 +222,7 @@ int     key_up(int key);
 void    move_player(void);
 void    render_player(void);
 void    render_map(void);
-void    render_rays();
+void    render_rays(void);
 void    clear_image(void);
 
 
