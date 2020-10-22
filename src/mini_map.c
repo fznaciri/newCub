@@ -28,21 +28,21 @@ void render_map(void)
     }
 }
 
-void render_rays()
-{
-    int i;
-    t_line l;
+// void render_rays()
+// {
+//     int i;
+//     t_line l;
 
-    i = 0;
-    while (i < g_game.win_w)
-    {
-        l.pos.x = MINI_MAP_SCALE * g_player.pos.x;
-        l.pos.y = MINI_MAP_SCALE * g_player.pos.y;
-        l.alpha = g_ray[i].angle;
-        l.dist = MINI_MAP_SCALE * g_ray[i].dist;
-        l.color = 0x8FFF0000;
-        if(l.pos.x <= g_game.win_w && l.pos.y <= g_game.win_h)
-            line(l);
-        i++;
-    }
-}
+//     i = 0;
+//     while (i < g_game.win_w)
+//     {
+//         l.pos.x = MINI_MAP_SCALE * g_player.pos.x;
+//         l.pos.y = MINI_MAP_SCALE * g_player.pos.y;
+//         l.alpha = g_ray[i].angle;
+//         l.dist = MINI_MAP_SCALE * g_ray[i].dist;
+//         l.color = 0x8FFF0000;
+//         if(l.pos.x <= g_game.win_w && l.pos.y <= g_game.win_h)
+//             line(l);
+//         i++;
+//     }
+// }

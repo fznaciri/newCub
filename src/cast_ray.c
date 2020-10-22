@@ -138,24 +138,24 @@ void cast_allrays()
     
 // }
 
-// void    render_rays()
-// {
-//     int i;
-//     t_line ray;
+void    render_rays()
+{
+    int i;
+    t_line ray;
 
-//     ray.color = 0xFF0000;
-//     i = 0;
-//     while (i < g_game.win_w)
-//     {
-//         ray.pos.x = MINI_MAP_SCALE * g_player.pos.x;
-//         ray.pos.y = MINI_MAP_SCALE * g_player.pos.y;
-//         ray.dist = g_ray[i].dist * MINI_MAP_SCALE;
-//         ray.alpha = g_ray[i].angle;
-//         if (ray.pos.x <= g_game.win_w && ray.pos.y <= g_game.win_h)
-//             line(ray);
-//         i++;
-//     }
-// }
+    ray.color = 0xFF0000;
+    i = 0;
+    while (i < g_game.win_w)
+    {
+        ray.pos.x = MINI_MAP_SCALE * g_player.pos.x;
+        ray.pos.y = MINI_MAP_SCALE * g_player.pos.y;
+        ray.dist = g_ray[i].dist * MINI_MAP_SCALE;
+        ray.alpha = g_ray[i].angle;
+        if (ray.pos.x <= g_game.win_w && ray.pos.y <= g_game.win_h)
+            line(ray);
+        i++;
+    }
+}
 
 // void cast_horz(int id)
 // {
