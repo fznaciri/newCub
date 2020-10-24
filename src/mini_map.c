@@ -16,12 +16,14 @@ void render_map(void)
         {
             if (g_game.map.map[j][i] == '1' || g_game.map.map[j][i] == ' ')
                 rec.color = 0;
-            else if (g_game.map.map[j][i] == '0')
+            else if(g_game.map.map[j][i] == '0')
                 rec.color = 0xFFFFFF;
+            else if(g_game.map.map[j][i] == '2')
+                rec.color = 0x00FF00;
             rec.pos.x = MINI_MAP_SCALE * i * TILE_SIZE;
             rec.pos.y = MINI_MAP_SCALE * j * TILE_SIZE;
-
             rect(rec);
+            
             j++;
         }
         i++;               

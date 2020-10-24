@@ -82,11 +82,13 @@ typedef struct	s_sp
 	void		*ptr;
 	int			*data;
 	t_pos       s;
-	float		distance;
+	float		dist;
 }				t_sp;
 
 typedef struct  s_inter
 {
+    t_pos step;
+    t_pos   inter;
     t_pos   next;
     int     hit;
     t_pos   wall;
@@ -149,10 +151,9 @@ typedef struct s_game
     // Map properties
 	t_map   map;
 	//	Textures
-	t_tex   tex[4];
+	// t_tex   tex[4];
     // Sprites
     char    *s_path;
-    t_sp    sp[100];
     int     sp_num;
 	// Window resolution
 	int win_w;
@@ -176,6 +177,7 @@ t_inter     g_horz;
 t_inter     g_vert;
 
 t_tex       g_tex[4];
+t_sp        g_sp[100];
 
 // Load file
 void load_file(char *path);
@@ -207,24 +209,29 @@ void    setup(void);
 void    process_input(void);
 void    clear_image(void);
 int     main_loop(void);
+
 //ray casting
-void    init_inter(t_inter inter);
+void    init_vert(int id);
+void    init_horz(int id);
 void    hor_inter(int i);
 void    ver_inter(int i);
 void    ray_fill(int i);
 void    cast_ray(int i);
 void    cast_allrays(void);
 void    render_rays(void);
-    void    cast_vert(int id);
-    void    cast_horz(int id);
+void    cast_vert(int id);
+void    cast_horz(int id);
+
 // drawing
 void    my_mlx_pixel_put(int x, int y, int color);
 void    rect(t_rec rec);
 void    line(t_line l);
+
 // events
 int     key_down(int key);
 int     key_up(int key);
 void    move_player(void);
+
 // rendering minimap
 void    render_player(void);
 void    render_map(void);
@@ -235,10 +242,16 @@ int  get_text_color(t_tex tex, int x, int y);
 void set_text();
 t_pos    set_pos(t_pos *pos, float x, float y);
 int texture(int i);
+ 
  // Renderimgs walls
- void render_3dwall()
+ void render_3dwall();
 
-
+// Sprite
+void	init_sprite(int k, int *ws, int *hs);
+void	sp_pos(void);
+void	update_sp_d(void);
+void	render_sp(int x, int y, int sp_size, int k);
+void	sprites(void);
 
 // Utils loading file
 size_t	ft_strlen(const char *s);
@@ -257,8 +270,6 @@ int		gnl(int fd, char **line);
 int     is_wall_at(t_pos pos);
 float   normalize_angle(float angle);
 float   distance(float x1, float y1, float x2, float y2);
-
-
-
+t_pos    copy_pos(t_pos *pos, t_pos s);
 
 #endif

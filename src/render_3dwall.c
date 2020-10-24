@@ -3,23 +3,23 @@
 void render_3dwall()
 {
     int i = 0;
-    int wall_height;
-    float correct_distance;
+    int wall_h;
+    float correct_dist;
     int color;
-    int distance_from_top;
+    int dist_from_top;
     int j;
     int wall_top;
     int wall_bot;
     int t;
     
-    set_text();
+    
     while(i < g_game.win_w)
     {
-        correct_distance = g_ray[i].dist * cos(g_ray[i].angle - g_player.rot_angle);
-        wall_height = (TILE_SIZE / correct_distance) * ((g_game.win_w / 2) / (tan(FOV / 2)));
-        wall_top = ((g_game.win_h / 2) - (wall_height / 2));
+        correct_dist = g_ray[i].dist * cos(g_ray[i].angle - g_player.rot_angle);
+        wall_h = (TILE_SIZE / correct_dist) * ((g_game.win_w / 2) / (tan(FOV / 2)));
+        wall_top = ((g_game.win_h / 2) - (wall_h / 2));
         wall_top = wall_top < 0 ? 0 : wall_top;
-        wall_bot = ((g_game.win_h / 2) + (wall_height / 2));
+        wall_bot = ((g_game.win_h / 2) + (wall_h / 2));
         wall_bot = wall_bot > g_game.win_h ? g_game.win_h : wall_bot; 
        j = 0;
        t = texture(i);
@@ -35,9 +35,9 @@ void render_3dwall()
                 color = g_game.ceeling;
             else if (j < wall_bot) // wall 
             {
-                distance_from_top = j + (wall_height / 2) - (g_game.win_h / 2);
+                dist_from_top = j + (wall_h / 2) - (g_game.win_h / 2);
                 
-                g_tex[t].pos.y = distance_from_top * ((float)g_tex[t].h / wall_height);
+                g_tex[t].pos.y = dist_from_top * ((float)g_tex[t].h / wall_h);
                 g_tex[t].pos.y = g_tex[t].pos.y >= g_game.win_h ? g_game.win_h - 1 : g_tex[t].pos.y;
                 color = get_text_color(g_tex[t], g_tex[t].pos.x, g_tex[t].pos.y);
             } 

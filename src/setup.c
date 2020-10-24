@@ -35,21 +35,24 @@ void setup(void)
         write_exit("error\nrays allocation fails");
     initialize_window();  
     process_input();
+    set_text();
+    sp_pos();
 }
 
 void update()
 {
     move_player();
     cast_allrays();
+    update_sp_d();
 }
 
 void render(void)
 {
-    //render_3dwall();
+    render_3dwall();
     render_map();
     render_rays();
     render_player();
-    //render_sprite();
+    sprites();
 }
 void clear_image(void)
 {   
