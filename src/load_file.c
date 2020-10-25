@@ -324,9 +324,9 @@ void get_player()
 				{
 					g_player.pos.x = j * TILE_SIZE;
 					g_player.pos.y = i * TILE_SIZE;
-					if (g_game.map.map[i][j] == 'N')
-						g_player.rot_angle = M_PI / 2;
 					if (g_game.map.map[i][j] == 'S')
+						g_player.rot_angle = M_PI / 2;
+					if (g_game.map.map[i][j] == 'N')
 						g_player.rot_angle = 3 * M_PI / 2;
 					if (g_game.map.map[i][j] == 'W')
 						g_player.rot_angle = M_PI;
@@ -347,7 +347,7 @@ void load_file(char *path)
 	char *line;
 	int r;
 
-    if (!ft_strnstr(path, ".cup", ft_strlen(path)))
+    if (!ft_strnstr(path, ".cub", ft_strlen(path)))
         write_exit("Error\nThe filetype isn't <cub>");
     if ((fd = open(path, O_RDONLY)) == -1)
 		write_exit("Error\nFile doesn't exist");

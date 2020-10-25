@@ -76,14 +76,14 @@ void	render_sp(int x, int y, int sp_size, int k)
 
 	init_sprite(k, &ws, &hs);
 	i = -1;
-	while (++i < sp_size)
+	while(++i < sp_size)
 	{
-		if (x + i < 0 || x + i > g_game.win_w)
+		if(x + i < 0 || x + i > g_game.win_w)
 			continue;
-		if (g_sp[k].dist >= g_ray[x + i].dist)
-			continue;
+		// if(g_sp[k].dist >= g_ray[x + i].dist)
+		// 	continue;
 		j = -1;
-		while (++j < sp_size)
+		while(++j < sp_size)
 		{
 			color = g_sp[k].data[ws * (j * hs / sp_size) + (i * ws / sp_size)];
 			if (color != 0)

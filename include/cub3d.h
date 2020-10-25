@@ -244,7 +244,9 @@ t_pos    set_pos(t_pos *pos, float x, float y);
 int texture(int i);
  
  // Renderimgs walls
- void render_3dwall();
+ void   render_3dwall();
+ void   render();
+ void   update();
 
 // Sprite
 void	init_sprite(int k, int *ws, int *hs);
@@ -271,5 +273,13 @@ int     is_wall_at(t_pos pos);
 float   normalize_angle(float angle);
 float   distance(float x1, float y1, float x2, float y2);
 t_pos    copy_pos(t_pos *pos, t_pos s);
+
+// save
+void	save();
+void	int_in_char(unsigned char *str, int value);
+int		write_header(int fd, unsigned int size);
+int		write_data(int fd, unsigned int pad_br);
+void	screen_shot(void);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
