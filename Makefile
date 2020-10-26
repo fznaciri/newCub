@@ -18,5 +18,5 @@ run:
 	@./$(NAME)
 
 clean:
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 re: clean all

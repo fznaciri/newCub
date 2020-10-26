@@ -9,7 +9,7 @@ void move_player(void)
     g_player.rot_angle += g_player.turn_dir * ROT_SPEED;
     new.x = (g_player.pos.x + step * cos(g_player.rot_angle));
     new.y = (g_player.pos.y + step * sin(g_player.rot_angle)); 
-    if (!is_wall_at(new))
+    if (!is_wall_at(new) && !is_sp_at(new))
     {
         g_player.pos.x = new.x;
         g_player.pos.y = new.y; 
