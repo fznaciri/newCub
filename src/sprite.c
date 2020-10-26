@@ -28,8 +28,8 @@ void	sp_pos(void)
 		{
 			if (g_game.map.map[j][i] == '2')
 			{
-				g_sp[k].s.x = j * TILE_SIZE + TILE_SIZE / 2;
-				g_sp[k].s.y = i * TILE_SIZE + TILE_SIZE / 2;
+				g_sp[k].s.x = i * TILE_SIZE + TILE_SIZE / 2;
+				g_sp[k].s.y = j * TILE_SIZE + TILE_SIZE / 2;
 				g_game.sp_num++;
 				k++;
 			}
@@ -80,8 +80,8 @@ void	render_sp(int x, int y, int sp_size, int k)
 	{
 		if(x + i < 0 || x + i > g_game.win_w)
 			continue;
-		// if(g_sp[k].dist >= g_ray[x + i].dist)
-		// 	continue;
+		if(g_sp[k].dist >= g_ray[x + i].dist)
+			continue;
 		j = -1;
 		while(++j < sp_size)
 		{
@@ -113,6 +113,8 @@ void	sprites(void)
 			sp_size = (g_game.win_h / g_sp[k].dist) * TILE_SIZE;
 		else
 			sp_size = (g_game.win_w / g_sp[k].dist) * TILE_SIZE;
+		// printf("sp_k: %d  sp_size: %f sp_dist: %f\n", k, sp_size, g_sp[k].dist);
+		// printf("player_x: %f  player_y: %f\n", g_player.pos.x, g_player.pos.y);
 		y = g_game.win_h / 2 - sp_size / 2;
 		x = sp_angle * (g_game.win_w / FOV) + (g_game.win_w / 2 - sp_size / 2);
 		render_sp(x, y, sp_size, k);
