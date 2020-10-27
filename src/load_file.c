@@ -153,8 +153,10 @@ void treat_r(char *s)
 	g_tkn.r += 1;
 	if (g_tkn.r == 2)
 		write_exit("Error\nMore  than one R detected in <cub> file");
-	if (g_game.win_h <= 0 || g_game.win_h > 1440 || g_game.win_w <= 0 || g_game.win_w > 2560)
+	if (g_game.win_h <= 0 || g_game.win_w <= 0)
 		write_exit("Error\nResolution is invalid");
+	g_game.win_w = g_game.win_w > 2560 ? 2560 : g_game.win_w;
+	g_game.win_h = g_game.win_h > 1440 ? 1440 : g_game.win_h;
 }
 
 void check_before_map()

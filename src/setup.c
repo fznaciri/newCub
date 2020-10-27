@@ -49,11 +49,12 @@ void update()
 void render(void)
 {
     render_3dwall();
-    render_map();
-    render_rays();
-    render_player();
+    // render_map();
+    // render_rays();
+    // render_player();
     sprites();
 }
+
 void clear_image(void)
 {   
     t_rec rec;
