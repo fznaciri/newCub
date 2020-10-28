@@ -258,6 +258,7 @@ int     is_sp_at(t_pos pos);
 
 // game utils
 int     is_wall_at(t_pos pos);
+int     is_wall(float x, float y);
 float   normalize_angle(float angle);
 float   distance(float x1, float y1, float x2, float y2);
 t_pos    copy_pos(t_pos *pos, t_pos s);

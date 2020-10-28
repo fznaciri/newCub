@@ -157,6 +157,18 @@ int     is_wall_at(t_pos pos)
     return (g_game.map.map[index_y][index_x] == '1' ? 1 : 0);
 }
 
+int is_wall(float x, float y)
+{
+	int index_x;
+    int index_y;
+
+    if (x < 0 || x > g_game.map.w * TILE_SIZE || y < 0 || y > g_game.map.h * TILE_SIZE)
+        return TRUE;
+    index_x = floor(x / TILE_SIZE);
+    index_y = floor(y / TILE_SIZE);
+    return (g_game.map.map[index_y][index_x] == '1' ? 1 : 0);
+}
+
 int     is_sp_at(t_pos pos)
 {   
 	int index_x;
