@@ -49,9 +49,9 @@ void update()
 void render(void)
 {
     render_3dwall();
-    // render_map();
-    // render_rays();
-    // render_player();
+    render_map();
+    render_rays();
+    render_player();
     sprites();
 }
 

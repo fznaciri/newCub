@@ -17,7 +17,7 @@
 # define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define FOV (60 * (M_PI / 180))
-# define MINI_MAP_SCALE 0.2
+# define MINI_MAP_SCALE 0.1
 
 #define SPEED 8
 #define ROT_SPEED 8 * (M_PI / 180)

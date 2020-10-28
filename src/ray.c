@@ -56,18 +56,15 @@ void    init_horz(int id)
 
 void cast_horz(int id)
 {
-    // int check;
 
     init_horz(id);
-    // check = g_ray[id].ray_d ? 0 : -1;
-    while ((g_horz.next.x >= 0 && g_horz.next.x <= g_game.map.w * TILE_SIZE) && (g_horz.next.y >= 0 && g_horz.next.y <= g_game.map.h * TILE_SIZE))
+    while ((g_horz.next.x >= 0 && g_horz.next.x < g_game.map.w * TILE_SIZE) && (g_horz.next.y >= 0 && g_horz.next.y < g_game.map.h * TILE_SIZE))
     {
         if (is_wall_at(g_horz.next))
         {
             g_horz.hit = 1;
             g_horz.wall.x = g_horz.next.x;
             g_horz.wall.y = g_horz.next.y;
-            // set_pos(&(g_horz.wall), g_horz.next.x, g_horz.next.y);
             break;
         }
         else
@@ -94,18 +91,15 @@ void    init_vert(int id)
 }
 void cast_vert(int id)
 {
-    // int check;
     
     init_vert(id);
-    //check = g_ray[id].ray_r ? 0 : -1;
-    while ((g_vert.next.x >= 0 && g_vert.next.x <= g_game.map.w * TILE_SIZE) && (g_vert.next.y >= 0 && g_vert.next.y <= g_game.map.h * TILE_SIZE))
+    while ((g_vert.next.x >= 0 && g_vert.next.x < g_game.map.w * TILE_SIZE) && (g_vert.next.y > 0 && g_vert.next.y <= g_game.map.h * TILE_SIZE))
     {
         if (is_wall_at(g_vert.next))
         {
             g_vert.hit = 1;
             g_vert.wall.x = g_vert.next.x;
             g_vert.wall.y = g_vert.next.y;
-            //set_pos(&(g_vert.wall), g_vert.next.x, g_vert.next.y);
             break;
         }
         else

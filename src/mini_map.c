@@ -22,8 +22,7 @@ void render_map(void)
                 rec.color = 0x00FF00;
             rec.pos.x = MINI_MAP_SCALE * i * TILE_SIZE;
             rec.pos.y = MINI_MAP_SCALE * j * TILE_SIZE;
-            rect(rec);
-            
+            rect(rec);  
             j++;
         }
         i++;               
