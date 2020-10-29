@@ -45,16 +45,4 @@ int texture(int i)
 		return(g_ray[i].ray_d ? N_SO : N_NO);
 	else
 		return(g_ray[i].ray_l ? N_WE : N_EA);
-    // t_pos pos;
-
-
-    // if(!is_wall_at(set_pos(&pos, g_ray[i].wall_hit.x, g_ray[i].wall_hit.y - 1)))
-    //     return N_NO;
-    // else if (!is_wall_at(set_pos(&pos, g_ray[i].wall_hit.x, g_ray[i].wall_hit.y + 1)))
-    //     return N_SO;
-    // if (!is_wall_at(set_pos(&pos, g_ray[i].wall_hit.x - 1, g_ray[i].wall_hit.y)))
-    //     return N_WE;
-    // else if (!is_wall_at(set_pos(&pos, g_ray[i].wall_hit.x + 1, g_ray[i].wall_hit.y)))
-    //     return N_EA;
-    // return 0;
 }

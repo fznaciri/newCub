@@ -76,6 +76,7 @@ void cast_horz(int id)
         }
     };
 }
+
 void    init_vert(int id)
 {
     g_vert.hit = 0;

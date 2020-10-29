@@ -17,7 +17,7 @@
 # define TILE_SIZE 64
 # define MAX_INT 2147483647
 # define FOV (60 * (M_PI / 180))
-# define MINI_MAP_SCALE 0.1
+# define MINI_MAP_SCALE 0.02
 
 #define SPEED 8
 #define ROT_SPEED 8 * (M_PI / 180)
@@ -177,7 +177,7 @@ t_inter     g_horz;
 t_inter     g_vert;
 
 t_tex       g_tex[4];
-t_sp        g_sp[100];
+t_sp        g_sp[1000];
 
 // Load file
 void load_file(char *path);

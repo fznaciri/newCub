@@ -35,7 +35,9 @@ void setup(void)
         write_exit("error\nrays allocation fails");
     initialize_window();  
     process_input();
+    printf("start set text\n");
     set_text();
+    printf("end set text\n");
     sp_pos();
 }
 
