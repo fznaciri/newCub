@@ -30,7 +30,7 @@
 # define EVENT_KEYDOWN 2
 # define EVENT_KEYUP 3
 
-#define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
+#define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0' || x == ' ')
 #define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '0')
 #define IS_P(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E')
 

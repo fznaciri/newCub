@@ -3,6 +3,8 @@
 void load_texture(t_tex *tex)
 {
     tex->tex.img = mlx_xpm_file_to_image(g_game.m_ptr, tex->path, &tex->w, &tex->h);
+    if (!tex->tex.img)
+            write_exit("Error\nfiled to load the texture");
     tex->tex.addr = mlx_get_data_addr(tex->tex.img, &tex->tex.bpp, &tex->tex.length, &tex->tex.e);
 }
 
