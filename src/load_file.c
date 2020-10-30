@@ -95,17 +95,33 @@ void treat_f(char *s)
 	skip_spaces(&s);
 	if (!*s)
 		write_exit("Error\nNo value assigned to F element");
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.r = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.g = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.b = ft_atoi(s);
 	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255 || color.b < 0 || color.b > 255)
 		write_exit("Error\nColors are invalid");
+	skip_digit(&s);
+	skip_spaces(&s);
+	if (*s)
+		write_exit("Error\nNo value assigned to C element");
 	color.r <<= 16;
 	color.g <<= 8;
 	g_game.floor = color.r + color.g + color.b;
@@ -121,17 +137,33 @@ void treat_c(char *s)
 	skip_spaces(&s);
 	if (!*s)
 		write_exit("Error\nNo value assigned to C element");
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.r = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.g = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
+	if (*s != ',')
+		write_exit("Error\nNo value assigned to C element");
 	s++;
+	skip_spaces(&s);
+	if (!ft_isdigit(*s))
+		write_exit("Error\nNo value assigned to C element");
 	color.b = ft_atoi(s);
 	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255 || color.b < 0 || color.b > 255)
 		write_exit("Error\nColors are invalid");
+	skip_digit(&s);
+	skip_spaces(&s);
+	if (*s)
+		write_exit("Error\nNo value assigned to C element");
 	color.r <<= 16;
 	color.g <<= 8;
 	g_game.ceeling = color.r + color.g + color.b;
@@ -271,6 +303,11 @@ void verify_map()
 						|| g_game.map.map[i][j - 1] == ' ' || g_game.map.map[i][j + 1] == ' ' || g_game.map.map[i + 1][j - 1] == ' ' 
 						|| g_game.map.map[i + 1][j] == ' ' || g_game.map.map[i + 1][j + 1] == ' '))
 				write_exit("Error\nMap should be rounded by 1");
+			// else if (g_game.map.map[i][j]== '0' && (g_game.map.map[i][j - 1] == ' ' || g_game.map.map[i][j + 1] == ' ' 
+			// 			|| g_game.map.map[i - 1][j - 1] == ' ' || g_game.map.map[i + 1][j - 1] == ' '
+			// 			|| g_game.map.map[i - 1][j + 1] == ' ' || g_game.map.map[i + 1][j + 1] == ' '
+			// 			|| g_game.map.map[i - 1][j] == ' ' || g_game.map.map[i + 1][j]))
+			// 	write_exit("Error\n0 should be rounded by 1");
 			j++;
 		}
 		j = 0;

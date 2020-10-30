@@ -3,7 +3,7 @@ C = gcc -I /usr/local/include
 MLX = -L mlx_lib -lmlx 
 DEP = -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 FLAGS = -Wall -Wextra -Werror
-NAME = cub3d
+NAME = cub3DS
 D = -g
 SRC = ./src/*.c main.c
 

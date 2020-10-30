@@ -31,7 +31,7 @@
 # define EVENT_KEYUP 3
 
 #define IS_MAP_ELEMENT(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '1' || x == '0')
-#define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2')
+#define IS_ZSP(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E' || x == '2' || x == '0')
 #define IS_P(x) (x == 'N' || x == 'W' || x == 'S' || x == 'E')
 
 typedef struct  s_img {
