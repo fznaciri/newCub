@@ -15,7 +15,6 @@ void    cast_allrays()
         ray_angle += FOV / g_game.win_w;
         i++;
     }
-    
 }
 
 void    render_rays()
@@ -138,11 +137,4 @@ void cast_ray(int id)
         set_pos(&(g_ray[id].wall_hit), g_horz.wall.x, g_horz.wall.y);
         g_ray[id].vert_hit = 0;
     }
-}
-
-t_pos    copy_pos(t_pos *pos, t_pos s)
-{
-    pos->x = s.x;
-    pos->y = s.y;
-    return *pos;
 }

@@ -10,10 +10,12 @@ void            my_mlx_pixel_put(int x, int y, int color)
 
 void    rect(t_rec rec)
 {   
-    float i = 0;
-    float j = 0;
-    float k = rec.pos.x;
+    float i;
+    float j;
+    float k;
     
+    j = 0;
+    k = rec.pos.x;
     while(j < rec.size.y)
     {
         i = 0;
@@ -33,6 +35,7 @@ void    line(t_line l)
     int i;
     int new_x;
     int new_y;
+
     i = 0;
     while (i < l.dist)
     {

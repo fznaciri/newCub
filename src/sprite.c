@@ -1,4 +1,24 @@
 #include "../include/cub3d.h"
+void	sp_count()
+{
+	int i;
+	int j;
+	
+
+	i = 0;
+	g_game.sp_num = 0;
+	while (i < g_game.map.w)
+	{
+		j = 0;
+		while (j < g_game.map.h)
+		{
+			if (g_game.map.map[j][i] == '2')
+				g_game.sp_num++;
+			j++;
+		}
+		i++;
+	}
+}
 
 void	init_sprite(int k, int *ws, int *hs)
 {
@@ -30,7 +50,6 @@ void	sp_pos(void)
 			{
 				g_sp[k].s.x = i * TILE_SIZE + TILE_SIZE / 2;
 				g_sp[k].s.y = j * TILE_SIZE + TILE_SIZE / 2;
-				g_game.sp_num++;
 				k++;
 			}
 			j++;

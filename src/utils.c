@@ -194,6 +194,13 @@ float distance(float x1, float y1, float x2, float y2)
     return (hypotf((x2 - x1), (y2 - y1)));
 }
 
+t_pos    copy_pos(t_pos *pos, t_pos s)
+{
+    pos->x = s.x;
+    pos->y = s.y;
+    return *pos;
+}
+
 int		ft_strcmp(const char *s1, const char *s2)
 {
 	unsigned char	*cs1;

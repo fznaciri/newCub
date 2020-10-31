@@ -28,17 +28,20 @@ void process_input(void)
 }
 
 void setup(void)
-{
+{   
     g_player.turn_dir = 0;
     g_player.walk_dir = 0;
+    sp_count();
+    if(!(g_sp = malloc(sizeof(t_sp) * g_game.sp_num)))
+        write_exit("error\nSprites allocation fails");
     if(!(g_ray = malloc(sizeof(t_ray) * g_game.win_w)))
-        write_exit("error\nrays allocation fails");
+        write_exit("error\nRays allocation fails");
     initialize_window();  
     process_input();
-    printf("start set text\n");
+    printf("sp_num: %d\n", g_game.sp_num);
     set_text();
-    printf("end set text\n");
     sp_pos();
+    
 }
 
 void update()
