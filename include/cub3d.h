@@ -274,6 +274,9 @@ int		write_data(int fd, unsigned int pad_br);
 void	screen_shot(void);
 int		ft_strcmp(const char *s1, const char *s2);
 
+// free memory
+void free_text();
+
 // Utils loading file
 size_t	ft_strlen(const char *s);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);

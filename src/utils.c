@@ -234,3 +234,13 @@ int		ft_strcmp(const char *s1, const char *s2)
 	}
 	return (cs1[i] - cs2[i]);
 }
+
+void free_text()
+{
+	int i;
+
+	i = -1;
+	while (i++ < 4)
+		free(g_tex[i].path);
+	free(g_game.s_path);
+}

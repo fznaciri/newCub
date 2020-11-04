@@ -32,15 +32,23 @@ void setup(void)
     g_player.turn_dir = 0;
     g_player.walk_dir = 0;
     sp_count();
-    if(!(g_sp = malloc(sizeof(t_sp) * g_game.sp_num)))
-        write_exit("error\nSprites allocation fails");
     if(!(g_ray = malloc(sizeof(t_ray) * g_game.win_w)))
+    {
+        free(g_game.map.map);
+        free_text();
         write_exit("error\nRays allocation fails");
+    }     
+    if(!(g_sp = malloc(sizeof(t_sp) * g_game.sp_num)))
+    {
+        free(g_game.map.map);
+        free_text();
+        free(g_ray);
+        write_exit("error\nSprites allocation fails");
+    }    
     initialize_window();  
     process_input();
     set_text();
     sp_pos();
-    printf("sp_num: %d\n", g_game.sp_num);
 }
 
 void update()
