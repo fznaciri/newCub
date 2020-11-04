@@ -38,10 +38,9 @@ void setup(void)
         write_exit("error\nRays allocation fails");
     initialize_window();  
     process_input();
-    printf("sp_num: %d\n", g_game.sp_num);
     set_text();
     sp_pos();
-    
+    printf("sp_num: %d\n", g_game.sp_num);
 }
 
 void update()

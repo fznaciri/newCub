@@ -20,7 +20,7 @@
 # define MINI_MAP_SCALE 0.2
 
 #define SPEED 8
-#define ROT_SPEED 8 * (M_PI / 180)
+#define ROT_SPEED SPEED * (M_PI / 180)
 #define WALL_WIDTH 1
 
 #define FALSE 0
@@ -178,6 +178,7 @@ t_inter     g_vert;
 
 t_tex       g_tex[4];
 t_sp        *g_sp;
+//t_sp        g_sp[10000];
 
 // Load file
 void load_file(char *path);
@@ -256,6 +257,7 @@ void	update_sp_d(void);
 void	render_sp(int x, int y, int sp_size, int k);
 void	sprites(void);
 int     is_sp_at(t_pos pos);
+int     is_sp(float x, float y);
 
 // game utils
 int     is_wall_at(t_pos pos);
@@ -285,5 +287,6 @@ void    skip_spaces(char **s);
 int     spaces(char *s);
 void	skip_digit(char **s);
 int		gnl(int fd, char **line);
+
 
 #endif

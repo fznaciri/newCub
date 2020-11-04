@@ -1,4 +1,5 @@
 #include "../include/cub3d.h"
+
 void	sp_count()
 {
 	int i;

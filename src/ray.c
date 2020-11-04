@@ -137,4 +137,11 @@ void cast_ray(int id)
         set_pos(&(g_ray[id].wall_hit), g_horz.wall.x, g_horz.wall.y);
         g_ray[id].vert_hit = 0;
     }
+    // if (g_ray[id].dist == 0)
+    //     g_ray[id].dist = 0.04; // solution provisoire pour contourner ray_dis = 0
+    // printf("g_horz.hit: %d\n", g_horz.hit );
+    // printf("g_vert.hit: %d\n", g_vert.hit );
+    // printf("g_horz.dist: %f\n", g_horz.dist);
+    // printf("g_vert.dist: %f\n", g_vert.dist);
+    // printf("ray_dist: %f\n", g_ray[id].dist);
 }
