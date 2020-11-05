@@ -4,9 +4,8 @@ void	save()
 {
 	update();
 	render();
-	// sprites();
 	screen_shot();
-	exit(0);
+	destroy_window();
 }
 
 void	int_in_char(unsigned char *str, int value)
@@ -69,10 +68,10 @@ void	screen_shot(void)
 	size = 54 + (pbr + pad_br) * g_game.win_h;
 	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR |
 		S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
-		perror("error");
+		exit_error(3, strerror(errno));
 	if (write_header(fd, size) < 0)
-		perror("error");
+		exit_error(3, strerror(errno));
 	if (!write_data(fd, pad_br))
-		perror("error");
+		exit_error(3, strerror(errno));
 	close(fd);
 }

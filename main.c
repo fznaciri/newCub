@@ -5,7 +5,7 @@ int     main(int ac, char **av)
     // int i = 0;
 
     if (ac <= 1)
-        write_exit("Error\nfile .cup argument is missing\n");
+        write_exit("Error\nfile .cub argument is missing\n");
     if (ac > 3)
         write_exit("Error\ntoo many argument\n");
     if (ac >= 2)
@@ -30,4 +30,6 @@ int     main(int ac, char **av)
 	// }
     mlx_loop_hook(g_game.m_ptr, main_loop, (void*)0);
     mlx_loop(g_game.m_ptr);
+    leakcheckfull();
+    return 0;
 }

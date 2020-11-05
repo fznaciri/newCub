@@ -185,17 +185,17 @@ void treat_r(char *s)
 	skip_digit(&s);
 	skip_spaces(&s);
 	if (!ft_isdigit(*s))
-		write_exit("Error\nNo value assigned to C element");
+		write_exit("Error\nNo value assigned to R element");
 	g_game.win_h = ft_atoi(s);
 	skip_digit(&s);
 	skip_spaces(&s);
 	if (*s)
-		write_exit("Error\nNo value assigned to C element");
+		write_exit("Error\nNo value assigned to R element");
 	g_tkn.r += 1;
 	if (g_tkn.r == 2)
 		write_exit("Error\nMore  than one R detected in <cub> file");
 	if (g_game.win_h <= 0 || g_game.win_w <= 0)
-		write_exit("Error\nNo value assigned to C element");
+		write_exit("Error\nNo value assigned to R element");
 	g_game.win_w = g_game.win_w > 2560 ? 2560 : g_game.win_w;
 	g_game.win_h = g_game.win_h > 1440 ? 1440 : g_game.win_h;
 }
@@ -312,11 +312,6 @@ void verify_map()
 						|| g_game.map.map[i][j - 1] == ' ' || g_game.map.map[i][j + 1] == ' ' || g_game.map.map[i + 1][j - 1] == ' ' 
 						|| g_game.map.map[i + 1][j] == ' ' || g_game.map.map[i + 1][j + 1] == ' '))
 				write_exit("Error\nMap should be rounded by 1");
-			// else if (g_game.map.map[i][j]== '0' && (g_game.map.map[i][j - 1] == ' ' || g_game.map.map[i][j + 1] == ' ' 
-			// 			|| g_game.map.map[i - 1][j - 1] == ' ' || g_game.map.map[i + 1][j - 1] == ' '
-			// 			|| g_game.map.map[i - 1][j + 1] == ' ' || g_game.map.map[i + 1][j + 1] == ' '
-			// 			|| g_game.map.map[i - 1][j] == ' ' || g_game.map.map[i + 1][j]))
-			// 	write_exit("Error\n0 should be rounded by 1");
 			j++;
 		}
 		j = 0;
@@ -401,9 +396,7 @@ void load_file(char *path)
 		write_exit("Error\nFile doesn't exist");
 	g_game.map.map = 0;
 	while ( (r = gnl(fd, &line)) >= 0)
-	{
-		
-		
+	{	
 		if (!empty_line(line))
 			treat_element(line);
 		free(line);

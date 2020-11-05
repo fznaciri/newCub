@@ -4,7 +4,7 @@ void load_texture(t_tex *tex)
 {
     tex->tex.img = mlx_xpm_file_to_image(g_game.m_ptr, tex->path, &tex->w, &tex->h);
     if (!tex->tex.img)
-            write_exit("Error\nfiled to load the texture");
+            exit_error(3, "failed to load the texture");
     tex->tex.addr = mlx_get_data_addr(tex->tex.img, &tex->tex.bpp, &tex->tex.length, &tex->tex.e);
 }
 
@@ -26,8 +26,7 @@ void set_text()
         g_tex[i].w = 64;
         g_tex[i].h = 64;
         i++;
-    }
-    
+    }  
     load_texture(&g_tex[N_NO]);
     load_texture(&g_tex[N_SO]);
     load_texture(&g_tex[N_WE]);

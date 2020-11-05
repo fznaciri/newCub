@@ -5,12 +5,13 @@ DEP = -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 FLAGS = -Wall -Wextra -Werror
 NAME = cub3D
 D = -g
-SRC = ./src/*.c main.c
+SRC = ./src/*.c 
 
 all: $(NAME)
 
 $(NAME):
-	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
+	./compile.sh 2 LCF main.c $(C) -o $(NAME) $(SRC) $(DEP) -include malloc.h
+	# @$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
 debug:
 	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP) $(D) -fsanitize=address
 	#@lldb $(NAME)

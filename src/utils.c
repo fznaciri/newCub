@@ -240,7 +240,33 @@ void free_text()
 	int i;
 
 	i = -1;
-	while (i++ < 4)
+	while (++i < 4)
 		free(g_tex[i].path);
 	free(g_game.s_path);
+}
+
+void	exit_error(int id, char *s)
+{
+	if (id == 1)
+	{
+		free(g_game.map.map);
+        free_text();
+	}
+	if (id == 2)
+	{
+		free(g_game.map.map);
+        free_text();
+        free(g_ray);
+	}
+	if (id == 3)
+	{
+		free_text();
+		free(g_game.map.map);
+		free(g_ray);
+		free(g_sp);
+	}
+	mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
+    mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+	write(1, "Error\n", 7);
+	write_exit(s);
 }

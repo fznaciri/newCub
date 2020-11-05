@@ -16,6 +16,10 @@ int destroy_window(void)
 {
     mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
+    free_text();
+	free(g_game.map.map);
+	free(g_ray);
+	free(g_sp);
     exit(0);
     return 0;
 }
@@ -33,18 +37,9 @@ void setup(void)
     g_player.walk_dir = 0;
     sp_count();
     if(!(g_ray = malloc(sizeof(t_ray) * g_game.win_w)))
-    {
-        free(g_game.map.map);
-        free_text();
-        write_exit("error\nRays allocation fails");
-    }     
+        exit_error(1, "Rays allocation fails");    
     if(!(g_sp = malloc(sizeof(t_sp) * g_game.sp_num)))
-    {
-        free(g_game.map.map);
-        free_text();
-        free(g_ray);
-        write_exit("error\nSprites allocation fails");
-    }    
+        exit_error(2, "Sprite allocation fails");   
     initialize_window();  
     process_input();
     set_text();

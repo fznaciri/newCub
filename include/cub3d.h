@@ -8,6 +8,8 @@
 #include <math.h>
 #include <fcntl.h>
 #include "mlx.h"
+#include <errno.h>
+#include "../malloc.h"
 
 #define N_NO  0
 #define N_WE  1
@@ -275,7 +277,8 @@ void	screen_shot(void);
 int		ft_strcmp(const char *s1, const char *s2);
 
 // free memory
-void free_text();
+void    free_text();
+void	exit_error(int id, char *s);
 
 // Utils loading file
 size_t	ft_strlen(const char *s);
