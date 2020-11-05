@@ -17,7 +17,7 @@ int destroy_window(void)
     mlx_clear_window(g_game.m_ptr, g_game.w_ptr);
     mlx_destroy_window(g_game.m_ptr, g_game.w_ptr);
     free_text();
-	free(g_game.map.map);
+	free_map();
 	free(g_ray);
 	free(g_sp);
     exit(0);

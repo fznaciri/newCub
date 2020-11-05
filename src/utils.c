@@ -245,23 +245,36 @@ void free_text()
 	free(g_game.s_path);
 }
 
+void free_map()
+{
+	int i;
+
+	i = 0;
+	while (i < g_game.map.h)
+	{
+		free(g_game.map.map[i]);
+		i++;
+	}
+	free(g_game.map.map);
+}
+
 void	exit_error(int id, char *s)
 {
 	if (id == 1)
 	{
-		free(g_game.map.map);
+		free_map();
         free_text();
 	}
 	if (id == 2)
 	{
-		free(g_game.map.map);
+		free_map();
         free_text();
         free(g_ray);
 	}
 	if (id == 3)
 	{
 		free_text();
-		free(g_game.map.map);
+		free_map();
 		free(g_ray);
 		free(g_sp);
 	}

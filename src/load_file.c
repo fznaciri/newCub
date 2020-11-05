@@ -390,6 +390,7 @@ void load_file(char *path)
 	char *line;
 	int r;
 
+	void tozero_tkn();
     if (!ft_strnstr(path, ".cub", ft_strlen(path)))
         write_exit("Error\nThe filetype isn't <cub>");
     if ((fd = open(path, O_RDONLY)) == -1)

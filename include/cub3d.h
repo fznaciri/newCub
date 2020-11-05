@@ -109,6 +109,16 @@ typedef struct  s_ray
     int     ray_l;
 }               t_ray;
 
+typedef  struct s_wall
+{
+    int h;
+    float dist;
+    int top;
+    int bot;
+    int color;
+    int t;
+    int j;
+}               t_wall;
 
 typedef struct s_tex
 {
@@ -180,6 +190,7 @@ t_inter     g_vert;
 
 t_tex       g_tex[4];
 t_sp        *g_sp;
+t_wall      g_wall;
 //t_sp        g_sp[10000];
 
 // Load file
@@ -247,6 +258,10 @@ t_pos    set_pos(t_pos *pos, float x, float y);
 int texture(int i);
  
  // Renderimgs walls
+ void init_wall(int i);
+ void ceeling(int i);
+ void wall(int i);
+ void ground(int i);
  void   render_3dwall();
  void   render();
  void   update();
@@ -279,6 +294,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 // free memory
 void    free_text();
 void	exit_error(int id, char *s);
+void free_map();
 
 // Utils loading file
 size_t	ft_strlen(const char *s);
