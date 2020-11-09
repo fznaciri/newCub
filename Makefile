@@ -5,7 +5,7 @@ DEP = -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 FLAGS = -Wall -Wextra -Werror
 NAME = cub3D
 D = -g
-SRC = ./src/*.c 
+SRC = ./src/*.c ./src/utils/*.c ./src/parser/*.c
 
 all: $(NAME)
 

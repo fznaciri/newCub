@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/06 11:41:54 by fnaciri-          #+#    #+#             */
+/*   Updated: 2020/11/07 12:08:09 by fnaciri-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-void	sp_count()
+void	sp_count(void)
 {
 	int i;
 	int j;
-	
 
 	i = 0;
 	g_game.sp_num = 0;
@@ -19,16 +30,6 @@ void	sp_count()
 		}
 		i++;
 	}
-}
-
-void	init_sprite(int k, int *ws, int *hs)
-{
-	int a;
-
-	g_sp[k].ptr = mlx_xpm_file_to_image(g_game.m_ptr, g_game.s_path, ws, hs);
-	if (g_sp[k].ptr == NULL)
-		exit_error(3, "Error loading sprite\n");
-	g_sp[k].data = (int *)mlx_get_data_addr(g_sp[k].ptr, &a, &a, &a);
 }
 
 void	sp_pos(void)
@@ -56,7 +57,7 @@ void	sp_pos(void)
 	}
 }
 
-void	update_sp_d(void)
+void	update_sp(void)
 {
 	int		i;
 	int		j;
@@ -64,7 +65,8 @@ void	update_sp_d(void)
 
 	i = -1;
 	while (++i < g_game.sp_num)
-		g_sp[i].dist = distance(g_sp[i].s.x, g_sp[i].s.y, g_player.pos.x, g_player.pos.y);
+		g_sp[i].dist = distance(g_sp[i].s.x, g_sp[i].s.y,
+						g_player.pos.x, g_player.pos.y);
 	i = 0;
 	while (i < g_game.sp_num)
 	{
@@ -93,18 +95,19 @@ void	render_sp(int x, int y, int sp_size, int k)
 
 	init_sprite(k, &ws, &hs);
 	i = -1;
-	while(++i < sp_size)
+	while (++i < sp_size)
 	{
-		if(x + i < 0 || x + i > g_game.win_w)
+		if (x + i < 0 || x + i > g_game.win_w)
 			continue;
-		if(g_sp[k].dist >= g_ray[x + i].dist)
+		if (g_sp[k].dist >= g_ray[x + i].dist)
 			continue;
 		j = -1;
-		while(++j < sp_size)
+		while (++j < sp_size)
 		{
 			color = g_sp[k].data[ws * (j * hs / sp_size) + (i * ws / sp_size)];
 			if (color > 0x000000)
-				if (((x + i) >= 0 && (x + i) < g_game.win_w) && ((y + j) >= 0 && (y + j) < g_game.win_h))
+				if (((x + i) >= 0 && (x + i) < g_game.win_w) && ((y + j) >= 0
+						&& (y + j) < g_game.win_h))
 					my_mlx_pixel_put(x + i, y + j, color);
 		}
 	}
@@ -121,7 +124,8 @@ void	sprites(void)
 	k = -1;
 	while (++k < g_game.sp_num)
 	{
-		sp_angle = atan2(g_sp[k].s.y - g_player.pos.y, g_sp[k].s.x - g_player.pos.x) - g_player.rot_angle;
+		sp_angle = atan2(g_sp[k].s.y - g_player.pos.y,
+					g_sp[k].s.x - g_player.pos.x) - g_player.rot_angle;
 		while (sp_angle > M_PI)
 			sp_angle -= 2 * M_PI;
 		while (sp_angle < -M_PI)

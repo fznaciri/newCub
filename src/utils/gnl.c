@@ -1,28 +1,16 @@
-#include "../include/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gnl.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/06 10:09:41 by fnaciri-          #+#    #+#             */
+/*   Updated: 2020/11/09 09:33:15 by fnaciri-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// int     gnl(char **line, int fd)
-// {
-// 	char    c;
-// 	int     i;
-
-// 	i = 0;
-// 	if ((*line = malloc(1000)) == NULL)
-// 		exit(-1);
-// 	while (read(fd, &c, 1) != 0)
-// 	{
-// 		if (c != '\n')
-// 			(*line)[i++] = c;
-// 		else
-// 		{
-// 			(*line)[i] = 0;
-// 			return (1);
-// 		}
-// 	}
-// 	free(*line);
-// 	return (0);
-// }
-
-#include "../include/gnl.h"
+#include "../../include/utils.h"
 
 char	*ft_checkerror(int fd, char **buff)
 {

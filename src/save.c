@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/06 11:41:38 by fnaciri-          #+#    #+#             */
+/*   Updated: 2020/11/07 11:55:36 by fnaciri-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-void	save()
+void	save(void)
 {
 	update();
 	render();
@@ -32,7 +44,7 @@ int		write_header(int fd, unsigned int size)
 	header[14] = (unsigned char)(40);
 	int_in_char(header + 18, g_game.win_w);
 	int_in_char(header + 22, -g_game.win_h);
-	header[26] = (unsigned char)(1); // didnt get this one
+	header[26] = (unsigned char)(1);
 	header[28] = (unsigned char)(24);
 	return (write(fd, header, 54));
 }
@@ -67,7 +79,7 @@ void	screen_shot(void)
 	pad_br = (4 - (pbr % 4)) % 4;
 	size = 54 + (pbr + pad_br) * g_game.win_h;
 	if ((fd = open("screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR |
-		S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
+					S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)) < 0)
 		exit_error(3, strerror(errno));
 	if (write_header(fd, size) < 0)
 		exit_error(3, strerror(errno));
