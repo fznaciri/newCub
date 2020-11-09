@@ -6,11 +6,12 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 11:37:13 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/07 13:14:58 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:50:56 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <stdio.h>
 
 void	initialize_window(void)
 {
@@ -51,6 +52,7 @@ void	setup(void)
 	g_player.turn_dir = 0;
 	g_player.walk_dir = 0;
 	sp_count();
+	printf("%d\n", g_game.sp_num);
 	if (!(g_ray = malloc(sizeof(t_ray) * g_game.win_w)))
 		exit_error(1, "Rays allocation fails");
 	if (!(g_sp = malloc(sizeof(t_sp) * g_game.sp_num)))

@@ -10,7 +10,7 @@ SRC = ./src/*.c ./src/utils/*.c ./src/parser/*.c
 all: $(NAME)
 
 $(NAME):
-	./compile.sh 2 LCF main.c $(C) -o $(NAME) $(SRC) $(DEP) -include malloc.h
+	./compile.sh 2 LCF main.c $(C) -g -o $(NAME) $(SRC) $(DEP) -include malloc.h -fsanitize=address
 	# @$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP)
 debug:
 	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(DEP) $(D) -fsanitize=address

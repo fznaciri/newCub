@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:39:51 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/08 12:19:25 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:08:53 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	verify_map(void)
 				|| g_game.map.map[i + 1][j - 1] == ' '
 				|| g_game.map.map[i + 1][j] == ' '
 				|| g_game.map.map[i + 1][j + 1] == ' '))
-				write_exit("Error\nMap should be rounded by 1");
+				load_error("Error\nMap should be rounded by 1");
 		}
 		j = 0;
 	}
@@ -104,7 +104,7 @@ void	verify_border(void)
 		if ((g_game.map.map[0][i] != '1' && g_game.map.map[0][i] != ' ')
 				|| (g_game.map.map[g_game.map.h - 1][i] != '1'
 					&& g_game.map.map[g_game.map.h - 1][i] != ' '))
-			write_exit("Error\nIncorrect Map");
+			load_error("Error\nIncorrect Map");
 		i++;
 	}
 	i = 0;
@@ -113,7 +113,7 @@ void	verify_border(void)
 		if ((g_game.map.map[i][0] != '1' && g_game.map.map[i][0] != ' ')
 				|| (g_game.map.map[i][g_game.map.w - 1] != '1'
 					&& g_game.map.map[i][g_game.map.w - 1] != ' '))
-			write_exit("Error\nIncorrect Map");
+			load_error("Error\nIncorrect Map");
 		i++;
 	}
 }
