@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:49:25 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/08 11:55:05 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/10 09:55:55 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	verify_player(void)
 					num_p++;
 			}
 			else
-				write_exit("Error\nBad character in map");
+				load_error("Error\nBad character in map");
 		}
 		j = 0;
 	}
@@ -42,9 +42,9 @@ void	verify_player(void)
 void	check_player(int num_p)
 {
 	if (num_p == 0)
-		write_exit("Error\nNo player detected in map");
+		load_error("Error\nNo player detected in map");
 	else if (num_p > 1)
-		write_exit("Error\nMore than one player detected in map");
+		load_error("Error\nMore than one player detected in map");
 }
 
 void	get_player(void)

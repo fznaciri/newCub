@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:27:42 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/09 14:23:08 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:40:06 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ int		is_wall_at(t_pos pos)
 			&& g_player.rot_angle <= 2 * M_PI)
 		index_y = (floor((pos.y - 4)) / TILE_SIZE);
 	if ((g_player.walk_dir == 1 && g_player.rot_angle >= M_PI / 2
-			&& g_player.rot_angle <= 1.5 * M_PI) || g_player.x_walk == -1)
+				&& g_player.rot_angle <= 1.5 * M_PI) || g_player.x_walk == -1)
 		index_x = (floor((pos.x - 4)) / TILE_SIZE);
-	 if (g_player.x_walk == -1 && g_player.rot_angle >= M_PI &&
-            g_player.rot_angle <= 2 * M_PI)
-        index_x = (floor((pos.x - 4)) / TILE_SIZE);
-    if (g_player.x_walk == -1 && ((g_player.rot_angle >= 0
-            && g_player.rot_angle <= 0.5 * M_PI)
-            || (g_player.rot_angle >= 1.5 * M_PI
-            && g_player.rot_angle <= M_2_PI)))
-        index_y = (floor((pos.y - 4)) / TILE_SIZE);
+	if (g_player.x_walk == -1 && g_player.rot_angle >= M_PI &&
+			g_player.rot_angle <= 2 * M_PI)
+		index_x = (floor((pos.x - 4)) / TILE_SIZE);
+	if (g_player.x_walk == -1 && ((g_player.rot_angle >= 0
+					&& g_player.rot_angle <= 0.5 * M_PI)
+				|| (g_player.rot_angle >= 1.5 * M_PI
+					&& g_player.rot_angle <= M_2_PI)))
+		index_y = (floor((pos.y - 4)) / TILE_SIZE);
 	return (g_game.map.map[index_y][index_x] == '1' ? 1 : 0);
 }
 

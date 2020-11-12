@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 14:48:52 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/09 10:23:17 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:47:28 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct	s_player
 	t_pos		pos;
 	float		rot_angle;
 	int			turn_dir;
-    int         x_walk;
+	int			x_walk;
 	int			walk_dir;
 }				t_player;
 

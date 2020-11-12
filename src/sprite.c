@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 11:41:54 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/07 12:08:09 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:42:37 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ void	update_sp(void)
 	i = -1;
 	while (++i < g_game.sp_num)
 		g_sp[i].dist = distance(g_sp[i].s.x, g_sp[i].s.y,
-						g_player.pos.x, g_player.pos.y);
+				g_player.pos.x, g_player.pos.y);
 	i = 0;
 	while (i < g_game.sp_num)
 	{
-		j = 0;
+		j = 1;
 		while (j < g_game.sp_num - i)
 		{
-			if (g_sp[j].dist < g_sp[j + 1].dist)
+			if (g_sp[j - 1].dist < g_sp[j].dist)
 			{
-				ech = g_sp[j];
-				g_sp[j] = g_sp[j + 1];
-				g_sp[j + 1] = ech;
+				ech = g_sp[j - 1];
+				g_sp[j - 1] = g_sp[j];
+				g_sp[j] = ech;
 			}
 			j++;
 		}
@@ -99,15 +99,16 @@ void	render_sp(int x, int y, int sp_size, int k)
 	{
 		if (x + i < 0 || x + i > g_game.win_w)
 			continue;
-		if (g_sp[k].dist >= g_ray[x + i].dist)
-			continue;
+		if (x + i < g_game.win_w)
+			if (g_sp[k].dist >= g_ray[x + i].dist)
+				continue;
 		j = -1;
 		while (++j < sp_size)
 		{
 			color = g_sp[k].data[ws * (j * hs / sp_size) + (i * ws / sp_size)];
 			if (color > 0x000000)
 				if (((x + i) >= 0 && (x + i) < g_game.win_w) && ((y + j) >= 0
-						&& (y + j) < g_game.win_h))
+							&& (y + j) < g_game.win_h))
 					my_mlx_pixel_put(x + i, y + j, color);
 		}
 	}
@@ -125,7 +126,7 @@ void	sprites(void)
 	while (++k < g_game.sp_num)
 	{
 		sp_angle = atan2(g_sp[k].s.y - g_player.pos.y,
-					g_sp[k].s.x - g_player.pos.x) - g_player.rot_angle;
+				g_sp[k].s.x - g_player.pos.x) - g_player.rot_angle;
 		while (sp_angle > M_PI)
 			sp_angle -= 2 * M_PI;
 		while (sp_angle < -M_PI)

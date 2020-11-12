@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:39:51 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/09 18:08:53 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/12 14:37:41 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_before_map(void)
 {
 	if (g_tkn.no == 0 || g_tkn.so == 0 || g_tkn.we == 0 || g_tkn.ea == 0
 			|| g_tkn.s == 0 || g_tkn.f == 0 || g_tkn.c == 0 || g_tkn.r == 0)
-		write_exit("Error\nMissing elements in <cub>  file");
+		load_error("Error\nMissing elements in <cub>  file");
 }
 
 void	treat_m(char *element)
@@ -80,14 +80,14 @@ void	verify_map(void)
 		while (++j < g_game.map.w - 1)
 		{
 			if (is_zsp(g_game.map.map[i][j])
-				&& (g_game.map.map[i - 1][j - 1] == ' '
-				|| g_game.map.map[i - 1][j] == ' '
-				|| g_game.map.map[i - 1][j + 1] == ' '
-				|| g_game.map.map[i][j - 1] == ' '
-				|| g_game.map.map[i][j + 1] == ' '
-				|| g_game.map.map[i + 1][j - 1] == ' '
-				|| g_game.map.map[i + 1][j] == ' '
-				|| g_game.map.map[i + 1][j + 1] == ' '))
+					&& (g_game.map.map[i - 1][j - 1] == ' '
+						|| g_game.map.map[i - 1][j] == ' '
+						|| g_game.map.map[i - 1][j + 1] == ' '
+						|| g_game.map.map[i][j - 1] == ' '
+						|| g_game.map.map[i][j + 1] == ' '
+						|| g_game.map.map[i + 1][j - 1] == ' '
+						|| g_game.map.map[i + 1][j] == ' '
+						|| g_game.map.map[i + 1][j + 1] == ' '))
 				load_error("Error\nMap should be rounded by 1");
 		}
 		j = 0;

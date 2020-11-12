@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:52:23 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/08 11:55:05 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/10 10:04:14 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	treat_element(char *element)
 	else if (is_map(*element) && !(element[i] == 0 && g_tkn.map == 0))
 		treat_m(element);
 	else
-		write_exit("Error\n<cub> file isn't well defined");
+		load_error("Error\n<cub> file isn't well defined");
 }
 
 void	load_file(char *path)
@@ -53,7 +53,7 @@ void	load_file(char *path)
 
 	tozero_tkn();
 	if (!ft_strnstr(path, ".cub", ft_strlen(path)))
-		write_exit("Error\nThe filetype isn't <cub>");
+		load_error("Error\nThe filetype isn't <cub>");
 	if ((fd = open(path, O_RDONLY)) == -1)
 		write_exit("Error\nFile doesn't exist");
 	g_game.map.map = 0;
@@ -80,6 +80,6 @@ int		empty_line(char *line)
 		if (line[i] != ' ' || line[i] != '\t')
 			return (0);
 	if (g_tkn.map == 1)
-		write_exit("Error\nMap should be the last Element in the <cub> file");
+		load_error("Error\nMap should be the last Element in the <cub> file");
 	return (1);
 }

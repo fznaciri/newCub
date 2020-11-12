@@ -2,3 +2,9 @@
 .vscode/
 cub3d_destroyer
 cub3D_tester
+malloc.c
+malloc.h
+malloc_main.c
+inc.h
+xmalloc.h
+compiler.sh
