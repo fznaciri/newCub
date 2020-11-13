@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 14:48:52 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/12 14:47:28 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:06:30 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,14 @@ typedef struct	s_tkn
 	char		s;
 	char		f;
 	char		c;
+	char		l;
 }				t_tkn;
+
+typedef struct	s_file
+{
+	char		*line;
+	int			fd;
+}				t_file;
 
 typedef struct	s_img {
 	void		*img;

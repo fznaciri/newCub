@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:37:11 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/09 09:45:38 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:24:54 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ void	write_exit(char *s)
 
 void	load_error(char *str)
 {
+	int r;
+
+	if (!g_tkn.l)
+	{
+		free(g_file.line);
+		while ((gnl(g_file.fd, &g_file.line)) > 0)
+			free(g_file.line);
+		gnl(g_file.fd, &g_file.line);
+		free(g_file.line);
+		close(g_file.fd);
+	}
 	if (g_tkn.no)
 		free(g_tex[N_NO].path);
 	if (g_tkn.so)

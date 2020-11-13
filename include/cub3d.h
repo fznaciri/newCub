@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 13:15:22 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/12 14:45:36 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:05:27 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_inter		g_vert;
 t_tex		g_tex[4];
 t_sp		*g_sp;
 t_wall		g_wall;
+t_file		g_file;
 
 void		clear_image(void);
 int			main_loop(void);

@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:52:23 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/10 10:04:14 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:12:04 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 void	tozero_tkn(void)
 {
-	g_tkn = (t_tkn){.map = 0, .no = 0, .so = 0, .we = 0, .ea = 0, .s = 0};
-	g_tkn = (t_tkn){.f = 0, .c = 0, .r = 0};
+	g_tkn.map = 0;
+	g_tkn.no = 0;
+	g_tkn.so = 0;
+	g_tkn.we = 0;
+	g_tkn.ea = 0;
+	g_tkn.s = 0;
+	g_tkn.f = 0;
+	g_tkn.c = 0;
+	g_tkn.r = 0;
+	g_tkn.l = 0;
 }
 
 void	treat_element(char *element)
@@ -47,24 +55,24 @@ void	treat_element(char *element)
 
 void	load_file(char *path)
 {
-	int		fd;
-	char	*line;
 	int		r;
 
 	tozero_tkn();
 	if (!ft_strnstr(path, ".cub", ft_strlen(path)))
 		load_error("Error\nThe filetype isn't <cub>");
-	if ((fd = open(path, O_RDONLY)) == -1)
-		write_exit("Error\nFile doesn't exist");
+	if ((g_file.fd = open(path, O_RDONLY)) == -1)
+		load_error("Error\nFile doesn't exist");
 	g_game.map.map = 0;
-	while ((r = gnl(fd, &line)) >= 0)
+	while ((r = gnl(g_file.fd, &g_file.line)) >= 0)
 	{
-		if (!empty_line(line))
-			treat_element(line);
-		free(line);
+		if (!empty_line(g_file.line))
+			treat_element(g_file.line);
+		free(g_file.line);
 		if (r == 0)
 			break ;
 	}
+	close(g_file.fd);
+	g_tkn.l = 1;
 	adjust_map();
 	verify_map();
 	verify_player();
@@ -77,9 +85,12 @@ int		empty_line(char *line)
 
 	i = 0;
 	while (line[i])
-		if (line[i] != ' ' || line[i] != '\t')
+	{
+		if (line[i] != ' ' && line[i] != '\t')
 			return (0);
+		i++;
+	}
 	if (g_tkn.map == 1)
-		load_error("Error\nMap should be the last Element in the <cub> file");
+		return (0);
 	return (1);
 }
