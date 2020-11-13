@@ -6,7 +6,7 @@
 /*   By: fnaciri- <fnaciri-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:52:23 by fnaciri-          #+#    #+#             */
-/*   Updated: 2020/11/13 20:12:04 by fnaciri-         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:38:22 by fnaciri-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	load_file(char *path)
 
 	tozero_tkn();
 	if (!ft_strnstr(path, ".cub", ft_strlen(path)))
-		load_error("Error\nThe filetype isn't <cub>");
+		write_exit("Error\nThe filetype isn't <cub>");
 	if ((g_file.fd = open(path, O_RDONLY)) == -1)
 		load_error("Error\nFile doesn't exist");
 	g_game.map.map = 0;

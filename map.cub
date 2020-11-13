@@ -1,5 +1,5 @@
 R 1080 720
-NO ./texture/fuhrer.xpm
+NO ./texture/  fuhrer.xpm
 SO ./texture/wall_2.xpm
 
 
@@ -7,7 +7,7 @@ WE ./texture/wall_3.xpm
 EA ./texture/wall_4.xpm
 
 S ./texture/barrel.xpm
-C 255,200,
+C 255,200, 144
 F 122,122,122
 
 11111111111111111
